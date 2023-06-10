@@ -1,0 +1,60 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+  --currency-icon: 'fa fa-inr'
+}
+
+.p-steps .p-steps-item .p-menuitem-link .p-steps-number {
+    color: #212529;
+    border: 1px solid #dee2e6;
+    background: transparent;
+    min-width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 1.143rem;
+    z-index: 1;
+    border-radius: 50% !important;
+}
+.p-steps .p-steps-item.p-highlight .p-steps-number {
+    background: #5f76e8;
+    color: #ffffff;
+}
+
+.withoutPadding{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.table-header{
+  font-size: 30px;
+}
+
+
+.p-fileupload .p-fileupload-content img{
+  width: 100% !important;
+}
+
+
+.p-datatable-scrollable .p-datatable-thead>tr .tableHeaderTh{
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.p-datatable-scrollable .p-datatable-thead>tr .tableHeaderTh:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.p-datatable-scrollable .p-datatable-thead>tr .tableChecker {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  width: 4rem !important;
+}
+
+.p-datatable-scrollable .p-datatable-thead>tr .tableHeaderThChecked:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.p-datatable .p-sortable-column .p-sortable-column-icon {
+  color: #fff !important;
+}

@@ -1,0 +1,137 @@
+{
+  "data": [
+    {
+      "label": "User Management",
+      "data": "User Management folder",
+      "expandedIcon": "pi pi-folder-open",
+      "collapsedIcon": "pi pi-folder",
+      "children": [
+        {
+          "label": "Users",
+          "data": "user",
+          "expandedIcon": "pi pi-folder-open",
+          "collapsedIcon": "pi pi-folder",
+          "type": "url"
+        },
+        {
+          "label": "Teams",
+          "data": "teams",
+          "expandedIcon": "pi pi-folder-open",
+          "collapsedIcon": "pi pi-folder",
+          "type": "url"
+        }
+      ]
+    },
+    {
+      "label": "Address",
+      "data": "Address Folder",
+      "expandedIcon": "pi pi-folder-open",
+      "collapsedIcon": "pi pi-folder",
+      "children": [
+        {
+          "label": "Billing Address",
+          "icon": "pi pi-image",
+          "data": "Billing Address Folder",
+          "type": "url"
+        },
+        {
+          "label": "Delievery Location",
+          "icon": "pi pi-image",
+          "data": "delievery-location",
+          "type": "url"
+        }
+      ]
+    },
+    {
+      "label": "Accounts",
+      "data": "Accounts Folder",
+      "expandedIcon": "pi pi-folder-open",
+      "collapsedIcon": "pi pi-folder",
+      "children": [
+        {
+          "label": "Bank Details",
+          "data": "bank-details",
+          "type": "url"
+        },
+        {
+          "label": "Payment Terms",
+          "data": "payment-terms",
+          "type": "url"
+        },
+        {
+          "label": "Tax Option",
+          "data": "tax-option",
+          "type": "url"
+        }
+      ]
+    },
+    {
+      "label": "Documents",
+      "data": "Documents Folder",
+      "expandedIcon": "pi pi-folder-open",
+      "collapsedIcon": "pi pi-folder",
+      "children": [
+        {
+          "label": "Logistics Details",
+          "data": "logistics-details",
+          "type": "url"
+        },
+        {
+          "label": "Terms & Conditions",
+          "data": "terms&conditions",
+          "type": "url"
+        },
+        {
+          "label": "Document Number Format",
+          "data": "Document Number Format",
+          "type": "url"
+        },
+        {
+          "label": "Transport Details",
+          "data": "transport-details",
+          "type": "url"
+        },
+        {
+          "label": "Document Field",
+          "data": "Document Field",
+          "type": "url"
+        }
+      ]
+    },
+    {
+      "label": "Invertory",
+      "data": "Invertory Folder",
+      "expandedIcon": "pi pi-folder-open",
+      "collapsedIcon": "pi pi-folder",
+      "children": [
+        {
+          "label": "Stores",
+          "data": "store-details",
+          "type": "url"
+        },
+        {
+          "label": "Barcode",
+          "data": "Barcode",
+          "type": "url"
+        },
+        {
+          "label": "Unit of Measurment",
+          "data": "unit-measurment",
+          "type": "url"
+        },
+        {
+          "label": "Transport Details",
+          "data": "transport-details",
+          "type": "url"
+        },
+        {
+          "label": "Product Category",
+          "data": "category-details",
+          "type": "url"
+        }
+
+      ]
+    }
+  ]
+}
+

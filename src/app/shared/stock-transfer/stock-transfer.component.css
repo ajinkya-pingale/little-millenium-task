@@ -1,0 +1,116 @@
+.icon{
+  background-color: none;
+  border: none;
+  height: 30px;
+  width: 30px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin: auto;
+}
+
+.p-datatable-thead{
+  background-color: black;
+}
+
+.icon:hover{
+  background-color: rgb(232, 230, 230);
+  border-radius: 50%;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+}
+
+.gotoDetails:hover{
+  background-color: rgb(232, 230, 230);
+  cursor: pointer;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
+
+p-table .sortBack input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background-color: rgb(238, 238, 238) !important;
+}
+
+p-table {
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+
+:host ::ng-deep .bulkAction .p-dropdown {
+  border: none;
+  background-color: #fff;
+}
+
+:host ::ng-deep .bulkAction .p-dropdown:hover {
+  border: rgb(236, 235, 235);
+  background-color: rgb(236, 235, 235);
+}
+
+.sortBack{
+  background-color: rgb(238, 238, 238) !important;
+}
+
+li.ui-tabmenuitem.ui-state-default.ui-state-active {
+  background: #A8C8EE !important;
+}
+
+
+:host ::ng-deep .phy .p-dropdown {
+  width: 20rem !important;
+  border-color: green;
+}
+
+:host ::ng-deep .phy .p-dropdown-label{
+  color: green;
+}
+
+:host ::ng-deep .phy .p-dropdown-trigger-icon{
+  color: green;
+}
+
+:host ::ng-deep .physical .p-dropdown{
+  width: 97% !important;
+  border-bottom: 1px solid #ced4da !important;
+  border: none;
+  border-radius: 0px;
+}
+
+p-table input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 0.1px solid;
+  width: 10rem;
+  margin-top: 14px;
+  background-color: #fff !important;
+}
+
+:host ::ng-deep .productStock .p-dropdown {
+  border-radius: 0px !important;
+  border: none;
+  border-bottom: 1px solid;
+  width: 180px !important;
+}
+
+:host ::ng-deep .productStock .p-dropdown .p-dropdown-clear-icon{
+  display: none;
+}
+
+.cancelItemButton{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+}

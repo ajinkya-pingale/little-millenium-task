@@ -1,0 +1,62 @@
+<aside class="left-sidebar mt-8 bg-blue-300" data-sidebarbg="skin6">
+  <!-- Sidebar scroll-->
+  <div class="" data-sidebarbg="skin6">
+    <!-- Sidebar navigation-->
+    <p-scrollPanel [style]="{width: '100%', height: sidebarMenuHeight+'px'}">
+      <nav class="sidebar-nav">
+        <ul id="sidebarnav">
+          <li class="sidebar-item" style="margin-top: -5px;" [class.selected]="currentMenuName=='Dashboard'">
+            <a class="sidebar-link sidebar-link" routerLink=""
+               aria-expanded="false">
+
+              <i-feather  name="home" class="feather-icon"></i-feather>
+              <span class="hide-menu">Dashboard</span>
+            </a>
+          </li>
+          <ng-container *ngFor="let eachSection of menu">
+            <!-- <li class="list-divider"></li> -->
+            <ng-container *ngFor="let eachMenu of eachSection.menu">
+              <li class="sidebar-item" style="min-width: fit-content;" [class.selected]="currentMenuName==eachMenu?.menuName">
+                <ng-container *ngIf="eachMenu.child.length>0">
+                  <a class="sidebar-link " [class.active]="eachMenu.isSelected" [class.has-arrow]="eachMenu.child.length>0" href="javascript:void(0)" (click)="onDropDownClick(eachMenu)"
+                     aria-expanded="false">
+
+                    <i-feather *ngIf="eachMenu?.icon" name="{{eachMenu?.icon}}" class="feather-icon text-white"></i-feather>
+                    <img *ngIf="eachMenu?.image" src="{{eachMenu?.image}}" class="feather-icon" >
+                    <span class="hide-menu text-white">{{eachMenu?.menuName}}</span>
+                  </a>
+                  <ul *ngIf="eachMenu.child.length>0" aria-expanded="false" [class.in]="eachMenu.isSelected" class="collapse  first-level base-level-line">
+                    <ng-container *ngFor="let eachSubMenu of eachMenu.child">
+                      <li  class="sidebar-item">
+                        <a [routerLink]="eachSubMenu?.route" class="sidebar-link" routerLinkActive="active">
+                          <span class="hide-menu"> {{eachSubMenu?.menuName}}
+                                        </span>
+                        </a>
+                      </li>
+                    </ng-container>
+
+
+                  </ul>
+                </ng-container>
+                <ng-container *ngIf="eachMenu.child.length==0">
+                  <a class="sidebar-link " [class.has-arrow]="eachMenu.child.length>0" [routerLink]="eachMenu?.route"
+                     aria-expanded="false">
+
+                    <i-feather  *ngIf="eachMenu?.icon" name="{{eachMenu?.icon}}" class="feather-icon"></i-feather>
+                    <img *ngIf="eachMenu?.image" src="{{eachMenu?.image}}" class="feather-icon">
+                    <span class="hide-menu">{{eachMenu?.menuName}}</span>
+                  </a>
+                </ng-container>
+
+
+              </li>
+            </ng-container>
+          </ng-container>
+
+        </ul>
+      </nav>
+    </p-scrollPanel>
+    <!-- End Sidebar navigation -->
+  </div>
+  <!-- End Sidebar scroll-->
+</aside>

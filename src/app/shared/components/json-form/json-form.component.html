@@ -1,0 +1,274 @@
+
+<form [formGroup]="myForm">
+  <div class="row">
+    <ng-container *ngFor="let control of jsonFormData?.controls">
+      <div class="col-md-{{control?.colLength??4}} p-field mb-3">
+        <ng-container *ngIf="control.type=='number'">
+          <label class="w-100 font-weight-medium0 text-dark" for="{{control.name}}">{{control.label}} <ng-container *ngIf="checkRequiredFiled(control.name)"><span class="text-danger">*</span>
+            <i class="pi pi-info-circle ml-2" *ngIf="control?.tooltipData" [pTooltip]="control?.tooltipData" tooltipPosition="bottom"></i>
+          </ng-container></label>
+          <p-inputNumber (onInput)="onChange($event,control)" [placeholder]="control.placeholder??'placeholder'"  class="w-100" [styleClass]="'w-100'" inputId="{{control.name}}" [formControlName]="control.name" [useGrouping]="false">
+          </p-inputNumber>
+          <ng-container *ngIf="((myForm.controls[control.name].touched && myForm.controls[control.name].errors) || isSubmitted) || isSubmitted">
+            <ng-container *ngFor="let eachMsg of getErrorMessage(myForm.controls[control.name].errors,control.type);let i=index">
+            <br *ngIf="i!==0">
+              <small class="p-error w-100" >{{eachMsg}}</small>
+            </ng-container>
+          </ng-container>
+          <br *ngIf="control?.errors.length">
+          <ng-container *ngFor="let eachMsg of control?.errors;let i=index">
+            <br *ngIf="i!==0">
+            <small class="p-error w-100" >{{eachMsg}}</small>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="control.type=='text'">
+          <label class="w-100 text-dark" for="{{control.name}}">{{control.label}} <ng-container *ngIf="checkRequiredFiled(control.name)"><span class="text-danger">*</span>
+          <i class="pi pi-info-circle ml-2" *ngIf="control?.tooltipData" [pTooltip]="control?.tooltipData" tooltipPosition="bottom"></i>
+        </ng-container></label>
+          <input [placeholder]="control.placeholder??'placeholder'" class="w-100 {{control.uppercase??''}}" type="text"  pInputText  [formControlName]="control.name" [value]="control.value">
+          <ng-container *ngIf="(myForm.controls[control.name].touched && myForm.controls[control.name].errors) || isSubmitted">
+            <ng-container *ngFor="let eachMsg of getErrorMessage(myForm.controls[control.name].errors,control.type);let i=index">
+            <br *ngIf="i!==0">
+              <small class="p-error w-100" >{{eachMsg}}</small>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="control.type=='inputMask'">
+          <label class="w-100" for="{{control.name}}">{{control.label}} <ng-container *ngIf="checkRequiredFiled(control.name)"><span class="text-danger">*</span>
+            <i class="pi pi-info-circle ml-2" *ngIf="control?.tooltipData" [pTooltip]="control?.tooltipData" tooltipPosition="bottom"></i>
+          </ng-container></label>
+          <p-inputMask [placeholder]="control.placeholder??'placeholder'" [styleClass]="'w-100'" [formControlName]="control.name"  mask="{{control.mask}}"></p-inputMask>
+          <ng-container *ngIf="(myForm.controls[control.name].touched && myForm.controls[control.name].errors) || isSubmitted">
+            <ng-container *ngFor="let eachMsg of getErrorMessage(myForm.controls[control.name].errors,control.type);let i=index">
+              <br *ngIf="i!==0">
+              <small class="p-error w-100" >{{eachMsg}}</small>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="control.type=='datePicker'">
+          <label class="w-100" for="{{control.name}}">{{control.label}} <ng-container *ngIf="checkRequiredFiled(control.name)"><span class="text-danger">*</span>
+            <i class="pi pi-info-circle ml-2" *ngIf="control?.tooltipData" [pTooltip]="control?.tooltipData" tooltipPosition="bottom"></i>
+          </ng-container></label>
+
+          <p-calendar [maxDateCount]="control.maxDateCount??null" [showTime]="control.showTime??false" [disabledDates]="control.disabledDates??null" [disabledDays]="control.disabledDays??null"  [dataType]="control.dataType??'date'" appendTo="body"
+            [minDate]="control.minDate??null" [maxDate]="control.maxDate??null" [selectOtherMonths]="true" [placeholder]="control.placeholder??'placeholder'" [styleClass]="'w-100'" [dateFormat]="control?.dateFormat" [selectionMode]="control.selectionMode??'single'" [formControlName]="control.name"  ></p-calendar>
+          <ng-container *ngIf="(myForm.controls[control.name].touched && myForm.controls[control.name].errors) || isSubmitted">
+            <ng-container *ngFor="let eachMsg of getErrorMessage(myForm.controls[control.name].errors,control.type);let i=index">
+              <br *ngIf="i!==0">
+              <small class="p-error w-100" >{{eachMsg}}</small>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="control.type=='email'">
+          <label class="w-100" for="{{control.name}}">{{control.label}} <ng-container *ngIf="checkRequiredFiled(control.name)"><span class="text-danger">*</span>
+            <i class="pi pi-info-circle ml-2" *ngIf="control?.tooltipData" [pTooltip]="control?.tooltipData" tooltipPosition="bottom"></i>
+          </ng-container></label>
+          <input [placeholder]="control.placeholder??'placeholder'" class="w-100" type="email"  pInputText  [formControlName]="control.name" [value]="control.value">
+          <ng-container *ngIf="(myForm.controls[control.name].touched && myForm.controls[control.name].errors) || isSubmitted">
+            <ng-container *ngFor="let eachMsg of getErrorMessage(myForm.controls[control.name].errors,control.type);let i=index">
+            <br *ngIf="i!==0">
+              <small class="p-error w-100" >{{eachMsg}}</small>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="control.type=='decimal'">
+          <label class="w-100" for="{{control.name}}">{{control.label}} <ng-container *ngIf="checkRequiredFiled(control.name)"><span class="text-danger">*</span>
+            <i class="pi pi-info-circle ml-2" *ngIf="control?.tooltipData" [pTooltip]="control?.tooltipData" tooltipPosition="bottom"></i>
+          </ng-container></label>
+          <p-inputNumber [placeholder]="control.placeholder??'placeholder'" class="w-100" [styleClass]="'w-100'" mode="decimal" inputId="{{control.name}}" [formControlName]="control.name" [useGrouping]="false" [minFractionDigits]="control.minFractionDigits??2">
+          </p-inputNumber>
+          <ng-container *ngIf="(myForm.controls[control.name].touched && myForm.controls[control.name].errors) || isSubmitted">
+            <ng-container *ngFor="let eachMsg of getErrorMessage(myForm.controls[control.name].errors,control.type);let i=index">
+              <br *ngIf="i!==0">
+              <small class="p-error w-100" >{{eachMsg}}</small>
+
+            </ng-container>
+          </ng-container>
+
+        </ng-container>
+
+        <ng-container *ngIf="control.type=='currency'">
+          <label class="w-100" for="{{control.name}}">{{control.label}} <ng-container *ngIf="checkRequiredFiled(control.name)"><span class="text-danger">*</span>
+            <i class="pi pi-info-circle ml-2" *ngIf="control?.tooltipData" [pTooltip]="control?.tooltipData" tooltipPosition="bottom"></i>
+          </ng-container></label>
+          <p-inputNumber [placeholder]="control.placeholder??'placeholder'" currency="{{control?.currencyCountry}}" locale="en-IN" class="w-100" [styleClass]="'w-100'" mode="currency" inputId="{{control.name}}" [formControlName]="control.name" [useGrouping]="false" [minFractionDigits]="2">
+          </p-inputNumber>
+          <ng-container *ngIf="(myForm.controls[control.name].touched && myForm.controls[control.name].errors) || isSubmitted">
+            <ng-container *ngFor="let eachMsg of getErrorMessage(myForm.controls[control.name].errors,control.type);let i=index">
+            <br *ngIf="i!==0">
+              <small class="p-error w-100" >{{eachMsg}}</small>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="control.type=='textarea'">
+          <label class="w-100" for="{{control.name}}">{{control.label}} <ng-container *ngIf="checkRequiredFiled(control.name)"><span class="text-danger">*</span>
+            <i class="pi pi-info-circle ml-2" *ngIf="control?.tooltipData" [pTooltip]="control?.tooltipData" tooltipPosition="bottom"></i> </ng-container></label>
+          <textarea class="w-100"  pInputTextarea [autoResize]="autoResize" [formControlName]="control.name" [rows]="control.rows">
+            {{control.value}}
+          </textarea>
+          <ng-container *ngIf="(myForm.controls[control.name].touched && myForm.controls[control.name].errors) || isSubmitted">
+            <ng-container *ngFor="let eachMsg of getErrorMessage(myForm.controls[control.name].errors,control.type);let i=index">
+              <br *ngIf="i!==0">
+              <small class="p-error w-100" >{{eachMsg}}</small>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="control.type=='checkbox'">
+          <label class="w-100" for="{{control.name}}">Select Value <ng-container *ngIf="checkRequiredFiled(control.name)"><span class="text-danger">*</span>
+            <i class="pi pi-info-circle ml-2" *ngIf="control?.tooltipData" [pTooltip]="control?.tooltipData" tooltipPosition="bottom"></i> </ng-container></label>
+          <div class="mt-2">
+              <p-checkbox [binary]="true"  [formControlName]="control.name" [value]="control.value" ></p-checkbox>
+              <label class="mb-0 ml-1"  for="{{control.name}}">{{control.label}}</label>
+          </div>
+          <ng-container *ngIf="(myForm.controls[control.name].touched && myForm.controls[control.name].errors) || isSubmitted">
+            <ng-container *ngFor="let eachMsg of getErrorMessage(myForm.controls[control.name].errors,control.type);let i=index">
+              <br *ngIf="i!==0">
+              <small class="p-error w-100" >{{eachMsg}} </small>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="control.type=='multipleCheckbox'">
+          <label class="w-100" for="{{control.name}}">{{control.label}} <ng-container *ngIf="checkRequiredFiled(control.name)"><span class="text-danger">*</span>
+            <i class="pi pi-info-circle ml-2" *ngIf="control?.tooltipData" [pTooltip]="control?.tooltipData" tooltipPosition="bottom"></i> </ng-container></label>
+          <div class="mt-2" >
+            <ng-container  *ngFor="let eachOption of control.options;let j=index">
+            <p-checkbox class="mr-3" label="{{eachOption.text}}"  [formControlName]="control.name" value="{{eachOption.value}}" ></p-checkbox>
+  <!--          <label class="mb-0 ml-1 mr-2"  for="{{eachOption.text}}">{{control.label}}</label>-->
+            </ng-container>
+          </div>
+          <ng-container *ngIf="(myForm.controls[control.name].touched && myForm.controls[control.name].errors) || isSubmitted">
+            <ng-container *ngFor="let eachMsg of getErrorMessage(myForm.controls[control.name].errors,control.type);let i=index">
+              <br *ngIf="i!==0">
+              <small class="p-error w-100" >{{eachMsg}}</small>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="control.type=='radio'">
+          <label class="w-100" for="{{control.name}}">{{control.label}} <ng-container *ngIf="checkRequiredFiled(control.name)"><span class="text-danger">*</span>
+            <i class="pi pi-info-circle ml-2" *ngIf="control?.tooltipData" [pTooltip]="control?.tooltipData" tooltipPosition="bottom"></i> </ng-container></label>
+          <div class="row mt-2 ml-2">
+            <ng-container class="ml-4" *ngFor="let eachOption of control.options;let j=index">
+            <div class="p-field-radiobutton ml-2 mr-2">
+              <p-radioButton label="{{eachOption.text}}" [formControlName]="control.name" [value]="eachOption.value"  inputId="{{control.name}}"></p-radioButton>
+  <!--            <label for="{{control.name}}">{{eachOption.text}}</label>-->
+            </div>
+            </ng-container>
+
+          </div>
+          <ng-container *ngIf="(myForm.controls[control.name].touched && myForm.controls[control.name].errors) || isSubmitted">
+            <ng-container *ngFor="let eachMsg of getErrorMessage(myForm.controls[control.name].errors,control.type);let i=index">
+              <br *ngIf="i!==0">
+              <small class="p-error w-100" >{{eachMsg}} </small>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="control.type=='dropdown' ">
+          <label class="w-100 text-dark" for="{{control.name}}">{{control.label}} <ng-container *ngIf="checkRequiredFiled(control.name)"><span class="text-danger">*</span>
+            <i class="pi pi-info-circle ml-2" *ngIf="control?.tooltipData" [pTooltip]="control?.tooltipData" tooltipPosition="bottom"></i> </ng-container></label>
+          <p-dropdown [placeholder]="control.placeholder??'placeholder'" [options]="control.options" optionLabel="{{control.optionLabel??''}}" optionValue="{{control.optionValue??''}}"
+                      [filter]="control.filter" [showClear]="control.showClear" filterBy="{{control.filterBy??''}}" [virtualScroll]="true"
+                      [styleClass]="'w-100'" [formControlName]="control.name" (onChange)="onChange($event,control)" appendTo="body"
+          ></p-dropdown>
+          <ng-container *ngIf="(myForm.controls[control.name].touched && myForm.controls[control.name].errors) || isSubmitted">
+            <ng-container *ngFor="let eachMsg of getErrorMessage(myForm.controls[control.name].errors,control.type);let i=index">
+              <br *ngIf="i!==0">
+              <small class="p-error w-100" >{{eachMsg}} </small>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="control.type=='multiselect'">
+          <label class="w-100" for="{{control.name}}">{{control.label}} <ng-container *ngIf="checkRequiredFiled(control.name)"><span class="text-danger">*</span>
+            <i class="pi pi-info-circle ml-2" *ngIf="control?.tooltipData" [pTooltip]="control?.tooltipData" tooltipPosition="bottom"></i> </ng-container></label>
+          <p-multiSelect [placeholder]="control.placeholder??'placeholder'" [options]="control.options" optionLabel="{{control.optionLabel??''}}" optionValue="{{control.optionValue??''}}"
+                      [filter]="control.filter"  filterBy="{{control.filterBy??''}}" [virtualScroll]="true" appendTo="body"
+                      [formControlName]="control.name" [styleClass]="'w-100'">
+          </p-multiSelect>
+          <ng-container *ngIf="(myForm.controls[control.name].touched && myForm.controls[control.name].errors) || isSubmitted">
+            <ng-container *ngFor="let eachMsg of getErrorMessage(myForm.controls[control.name].errors,control.type);let i=index">
+              <br *ngIf="i!==0">
+              <small class="p-error w-100" >{{eachMsg}} </small>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="control.type=='file'">
+          <label class="w-100" for="{{control.name}}">{{control.label}} <ng-container *ngIf="checkRequiredFiled(control.name)"><span class="text-danger">*</span>
+            <i class="pi pi-info-circle ml-2" *ngIf="control?.tooltipData" [pTooltip]="control?.tooltipData" tooltipPosition="bottom"></i> </ng-container></label>
+  <!--        <input type="file" accept="{{control.fileTypes??''}}" [multiple]="control.multiple">-->
+
+  <img *ngIf="control.image_preview" [src]="control.image_preview" width="40%" height="40%" class="mb-2" >
+
+          <div class="custom-file">
+            <input (change)="onChange($event,control)" accept="{{control.fileTypes??''}}" [multiple]="control.multiple" type="file" class="custom-file-input" id="customFile">
+            <label  class="custom-file-label" for="customFile">{{control.label}}</label>
+          </div>
+          <ng-container *ngIf="(myForm.controls[control.name].touched && myForm.controls[control.name].errors) || isSubmitted">
+            <ng-container *ngFor="let eachMsg of getErrorMessage(myForm.controls[control.name].errors,control.type);let i=index">
+              <br *ngIf="i!==0">
+              <small class="p-error w-100" >{{eachMsg}} </small>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="control.type=='break'">
+          <br>
+        </ng-container>
+
+        <ng-container *ngIf="control.type=='button'">
+  <!--        <input type="file" accept="{{control.fileTypes??''}}" [multiple]="control.multiple">-->
+        <label class="w-100" for="{{control?.name}}">{{control?.label}} <ng-container *ngIf="checkRequiredFiled(control.name)"><span class="text-danger">*</span></ng-container></label>
+
+          <div class="custom-file mt-2">
+            <!-- <button class="p-button-outlined font-17 " (click)="customButton()">
+              {{control?.name}}
+            </button> -->
+            <button pButton type="button" label="{{control?.name}}" class="p-button-outlined p-button-secondary"
+            (click)="customButton()" [pTooltip]="control?.tooltipData" tooltipPosition="bottom"></button>
+            <!-- <button class="btn btn-primary border-round-2xl " type="button" (click)="customButton()">{{control?.name}}</button> -->
+            <!-- <input (change)="onChange($event,control)" accept="{{control.fileTypes??''}}" [multiple]="control.multiple" type="file" class="custom-file-input" id="customFile"> -->
+            <!-- <label  class="custom-file-label" for="customFile">{{control.label}}</label> -->
+          </div>
+        </ng-container>
+      </div>
+
+
+    </ng-container>
+  </div>
+  <!-- <hr> -->
+  <div *ngIf="type !='edit/delete' ">
+    <div class="row justify-content-end" *ngIf="jsonFormData?.showButton">
+      <div class="mr-4 mt-2 w-10rem">
+        <button type="submit" class="btn btn-primary w-100 float-right border-round shadow" (click)="onSubmit('single')">Save</button>
+      </div>
+      <div class="mr-4 mt-2 w-10rem" *ngIf="jsonFormData?.showAddNewButton">
+        <button type="submit" class="btn btn-primary w-100 float-right border-round shadow" (click)="onSubmit('new')">Save & Add New</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="type =='edit/delete' ">
+    <div class="row justify-content-end" *ngIf="jsonFormData?.showButton">
+      <div class="mr-4 mt-2 w-10rem">
+        <button type="submit" class="btn btn-danger w-100 float-right border-round shadow" (click)="onSubmit('delete')">Delete</button>
+      </div>
+      <div class="mr-4 mt-2 w-10rem" *ngIf="jsonFormData?.showAddNewButton">
+        <button type="submit" class="btn btn-primary w-100 float-right border-round shadow" (click)="onSubmit('edit')">Edit</button>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row justify-content-end " >
+    <div class="col-12 justify-content-end ">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div> -->
+</form>
